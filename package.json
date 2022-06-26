@@ -1,0 +1,16 @@
+{
+  "name": "compair",
+  "version": "1.0.0",
+  "description": "\"compaire price or products\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.11",
+    "express": "^4.18.1"
+  }
+}
