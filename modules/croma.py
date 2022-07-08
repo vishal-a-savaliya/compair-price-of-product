@@ -1,19 +1,28 @@
+from weakref import proxy
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
+
+# px = requests.get("https://gimmeproxy.com/api/getProxy?country=IN")
+
+# pxdata = px.json()
+
+# ip=pxdata['ipPort']
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36"
+    "User-Agent": UserAgent().random
 }
 
 
 def croma(search):
-
+ 
     print('croma')
 
     url = f'https://www.croma.com/search/?q={search}'
 
     # Sending HTTP request
     req = requests.get(url,headers=headers)
+    # proxies = {"http": ip, "https": ip}
 
     print(req.status_code)
 
@@ -82,4 +91,4 @@ def croma(search):
     return result
 
 
-print(croma('oven'))
+print(croma('power bank'))

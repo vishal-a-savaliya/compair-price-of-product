@@ -64,10 +64,12 @@ def flipkart(search):
 
             # print("price->", item.find_all('a')[2].div.div.get_text())
 
-            if image and search.upper() in text.upper() :
-                resultset ={'image': image, 'text': text ,'ratings':ratings,'price':price }
+            # if image and search.upper() in text.upper() :
+            resultset ={'image': image, 'text': text ,'ratings':ratings,'price':price }
 
-                result.append(resultset)
+            result.append(resultset)
 
 
-        return result    
+        return result   
+
+print(flipkart("laptop"))
