@@ -1,4 +1,3 @@
-from logging import exception
 import requests,json
 from bs4 import BeautifulSoup
 from tldextract import extract
