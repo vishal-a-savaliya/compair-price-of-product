@@ -1,20 +1,21 @@
-import requests,json
+import requests
+import json
 from bs4 import BeautifulSoup
 from tldextract import extract
 
 
-def getSite(search):
+def getAvailableOnSites(search):
 
     # URL
     url = [f"https://www.google.com/search?&q={search}",
-        f"https://www.google.com/search?&q={search}&start=10",
-        f"https://www.google.com/search?&q={search}&start=20"
-        ]
+           f"https://www.google.com/search?&q={search}&start=10",
+           f"https://www.google.com/search?&q={search}&start=20"
+           ]
 
     data = set()
 
     for u in url:
-        searchSite(u,data)
+        searchSite(u, data)
 
     # data = {'sites':data }
 
@@ -22,15 +23,13 @@ def getSite(search):
     return json.dumps(list(data))
 
 
-def searchSite(url,list):
+def searchSite(url, list):
 
     # Sending HTTP request
     req = requests.get(url)
 
     # Pulling HTTP data from internet
     sor = BeautifulSoup(req.text, "html.parser")
-
-   
 
     data = sor.findAll('h3')
 
@@ -40,13 +39,12 @@ def searchSite(url,list):
             url = item.parent['href'].split('https')[1]
 
         except:
-            url=None
+            url = None
 
         if url:
             tsd, td, tsu = extract("https"+url)
 
             list.add(td)
-
 
 
 # print(getSite('laptop'))

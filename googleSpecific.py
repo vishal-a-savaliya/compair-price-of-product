@@ -3,7 +3,9 @@ import json
 from bs4 import BeautifulSoup
 
 
-def getProducts(query):
+def getProductsFromSite(site, query):
+
+    query = f'{query} in {site}'
 
     headers = {
         "User-Agent":
@@ -41,20 +43,22 @@ def getProducts(query):
         inline_shopping_source = result.select_one(
             '.E5ocAb').text.strip()
 
-        inline_results_dict.update({
+        if inline_shopping_source.lower() == site.lower:
 
-            'title': title,
-            'image': inline_shopping_image,
-            'link': inline_shopping_link,
-            'price': inline_shopping_price,
-            'source': inline_shopping_source,
-            'rating': None,
-            'reviews': None,
-            'delivery': None,
+            inline_results_dict.update({
 
-        })
+                'title': title,
+                'image': inline_shopping_image,
+                'link': inline_shopping_link,
+                'price': inline_shopping_price,
+                'source': inline_shopping_source,
+                'rating': None,
+                'reviews': None,
+                'delivery': None,
 
-        shopping_data.append(dict(inline_results_dict))
+            })
+
+            shopping_data.append(dict(inline_results_dict))
 
     for shopping_result in soup.select('.xcR77'):
 
@@ -110,7 +114,7 @@ def getProducts(query):
         except:
             delivery = None
 
-        if title and image and product_link:
+        if title and image and product_link and source.lower() == site.lower():
             shopping_results_dict.update({
 
                 'title': title,
@@ -126,8 +130,7 @@ def getProducts(query):
 
             shopping_data.append(dict(shopping_results_dict))
 
+    # shopping_data.sort(key=lambda x: x["price"].lower())
     shopping_data = sorted(shopping_data, key=lambda d: d['price'])
 
-    # return json.dumps(shopping_data, indent=2, ensure_ascii=False)
-
-    return shopping_data
+    return json.dumps(shopping_data, indent=2, ensure_ascii=False)
