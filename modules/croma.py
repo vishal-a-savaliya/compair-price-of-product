@@ -1,4 +1,3 @@
-from weakref import proxy
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -15,13 +14,13 @@ headers = {
 
 
 def croma(search):
- 
+
     print('croma')
 
     url = f'https://www.croma.com/search/?q={search}'
 
     # Sending HTTP request
-    req = requests.get(url,headers=headers)
+    req = requests.get(url, headers=headers)
     # proxies = {"http": ip, "https": ip}
 
     print(req.status_code)

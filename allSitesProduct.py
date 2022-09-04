@@ -28,6 +28,8 @@ def allSitesProduct(query):
             threads.append(thrd)
 
         for res in threads:
-            result.append(res.result())
+
+            if len(res.result()) > 0:
+                result.append(res.result())
 
     return json.dumps(result)

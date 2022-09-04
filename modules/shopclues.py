@@ -52,19 +52,20 @@ def shopclues(search):
         except:
             price = None
 
-        resultset = {
+        if title is not None and image is not None and price is not None:
+            resultset = {
 
-            'title': title,
-            'image': image,
-            'link': link,
-            'price': price,
-            'source': 'shopclues.com',
-            'rating': None,
-            'reviews': None,
-            'delivery': None,
+                'title': title,
+                'image': image,
+                'link': link,
+                'price': price,
+                'source': 'shopclues.com',
+                'rating': None,
+                'reviews': None,
+                'delivery': None,
 
-        }
+            }
 
-        result.append(resultset)
+            result.append(resultset)
 
     return result

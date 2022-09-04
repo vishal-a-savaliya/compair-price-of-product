@@ -3,6 +3,7 @@ from flask import *
 import json
 from flask_caching import Cache
 
+
 from googleSpecific import getProductsFromSite
 from googleproduct import getProducts
 from allSitesProduct import allSitesProduct
@@ -45,7 +46,7 @@ cache.init_app(app)
 
 @app.route("/")
 def home():
-    return "Welcome to compare API"
+    return render_template('index.html')
 
 
 @app.route('/google/<query>')
@@ -54,7 +55,7 @@ def search(query):
 
 
 @app.route('/availableon/<query>')
-def getAvailableOnSites(query):
+def getAvailableOnSite(query):
     return getAvailableOnSites(query)
 
 
@@ -107,5 +108,5 @@ def getfm(query):
 
 
 if __name__ == '__main__':
-    app.debug = True
+    # app.debug = True
     app.run(port=7777)
