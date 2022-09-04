@@ -14,15 +14,14 @@ The API also provide the produts from products barcode, send barcode as request 
     [
          {
 
-            'title': product_title,
-            'image': product_image,
-            'link': product_link,
-            'price': product_price,
-            'source': 'site name',
-            'rating': product_rating,
-            'reviews': product_reviews,
-            'delivery': Product_delivery,
-
+            "title": product_title,
+            "image": product_image,
+            "link": product_link,
+            "price": product_price,
+            "source": 'site name',
+            "rating": product_rating,
+            "reviews": product_reviews,
+            "delivery": Product_delivery
         },
     ]
 
@@ -77,7 +76,6 @@ returns the top websites name where product is available
         "flipkart",
         "instructables",
         "nykaa"
-        ...
     ]
 
 ```
